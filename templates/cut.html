@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    canvas {
+        display: block;
+    }
+    .cut-marker {
+        position: absolute;
+        border: 2px solid black;
+        border-left: none;
+        border-right: 5px solid black;
+    }
+    .cut-marker.selected {
+        border-right-color: green;
+    }
+
+    .cut-marker:hover {
+        border-right: 8px solid green;
+    }
+
+    .cut-marker.selected:hover {
+        border-right-color: black;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Cutting thing...</title>
+  </head>
+  <body>
+    <button id="toggleline">Toggle line color</button>
+    <button id="clearlast">Undo (ctrl+z)</button>
+    <button id="clearcuts">Reset</button>
+    <button id="submit">Submit</button>
+    <button id="remove-parent" style="display: none">Back to Vertical Cut</button>
+    <script>let URL = "{{ url|safe }}"</script>
+    <script src="/static/cut.js"></script>
+  </body>
+</html>

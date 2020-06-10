@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Image caption edit</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 3px;
+        }
+
+        textarea, button {
+            display: inline;
+        }
+
+        input[type="radio"] {
+            position: absolute;
+            top: -99em;
+        }
+
+        input[type="radio"] + img {
+            background-color: #ffffff;
+            padding: 3px;
+            border-radius: 4px;
+            vertical-align: top;
+        }
+
+        input[type="radio"]:checked + img {
+            background-color: #40e0d0;
+        }
+
+        .imgcontainer {
+            display: flex;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <label for="ocrkeyinp">Ocr.space API key</label>
+    <input type="text" id="ocrkeyinp">
+    <button id="setocrkey">Set</button>
+
+    {% for i, img in enumerate(outimgs) %}
+    <p class="imgcontainer">
+        <img src="{{ img['url'] }}" class="imgpart" alt="Image"></img>
+        <input type="hidden" class="position-data" value="{{ img['pos'] }}">
+        <label>
+            <input type="radio" class="typeradio imgradio" id="imgradio-{{ i }}" name="img{{ i }}" checked>
+            <img src="/static/imgicon.svg" height="30">
+        </label>
+        <label>
+            <input type="radio" class="typeradio txtradio" id="txtradio-{{ i }}" name="img{{ i }}">
+            <img src="/static/texticon.svg" height="30">
+        </label>
+    </p>
+    {% endfor %}
+    <button id='copy-data'>Copy JSON data to clipboard</button>
+    <button id='open-data'>Open JSON in new tab</button>
+
+    <script src="/static/ocr.js"></script>
+    <script src="/static/clipboard.js"></script>
+    <script src="/static/edit.js"></script>
+</body>
+</html>
